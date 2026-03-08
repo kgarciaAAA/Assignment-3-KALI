@@ -1,3 +1,2 @@
-public class Player extends User{
-    
+public abstract class Player {
 }
