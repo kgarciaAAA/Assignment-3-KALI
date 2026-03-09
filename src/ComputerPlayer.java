@@ -12,13 +12,10 @@ public class ComputerPlayer extends Player{
     public Move getPlayerMove() {
         int computerMove = randomNum.nextInt(3);
 
-        switch (computerMove) {
-            case 0:
-                return Move.ROCK;
-            case 1:
-                return Move.PAPER;
-            default:
-                return Move.SCISSORS;
-        }
+        return switch (computerMove) {
+            case 0 -> Move.ROCK;
+            case 1 -> Move.PAPER;
+            default -> Move.SCISSORS;
+        };
     }
 }
