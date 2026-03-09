@@ -24,6 +24,6 @@ public class ScoreBoard {
     }
 
     public void displayScore() {
-        System.out.printf("Score: Human: %s. Computer: %s. Draws= %s. \n", humanScore, computerScore, draws);
+        System.out.printf("Score: Human: %s. Computer: %s. Draws: %s. \n", humanScore, computerScore, draws);
     }
 }
