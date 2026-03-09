@@ -1,34 +1,29 @@
 public class ScoreBoard {
-    protected int[] scores;
+    private int humanScore;
+    private int computerScore;
+    private int draws;
 
     /**
-     * Initializes the score board with the number of players.
-     * The first index is the draw score, and the rest are the scores for each player.
-     * @param numberOfPlayers total number of players in the game + draw slot
+     * Records the result of a round.
+     * @param result 0 = draw, 1 = human wins, 2 = computer wins
      */
-    public ScoreBoard(int numberOfPlayers) {
-        this.scores = new int[numberOfPlayers];
-    }
-
-    /**
-     * Records the result of a round. If winners[0] is 0, it's a draw.
-     * Otherwise, each value in winners is a 1-indexed player whose score is incremented.
-     * @param winners array of winner indexes (1-indexed), or {0} for a draw
-     */
-    public void recordResult(Integer[] winners) {
-        if (winners[0] == 0) {
-            scores[0]++;
-            return;
-        } else {
-            for (int winner : winners)
-                scores[winner]++;
+    public void recordResult(int result) {
+        switch (result) {
+            case 0:
+                draws++;
+                break;
+            case 1:
+                humanScore++;
+                break;
+            case 2:
+                computerScore++;
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid result: " + result);
         }
     }
 
-    /**
-     * Displays the current score. Formatted for 1 human vs 1 computer.
-     */
     public void displayScore() {
-        System.out.println("Score: Human:" + scores[1] + " Computer:" + scores[2] + " Draws=" + scores[0]);
+        System.out.printf("Score: Human: %s. Computer: %s. Draws= %s. \n", humanScore, computerScore, draws);
     }
 }

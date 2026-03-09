@@ -1,43 +1,19 @@
-import java.util.HashSet;
-import java.util.Set;
-import java.util.ArrayList;
-
 public class GameLogic {
 
     /**
-     * Determines the winner(s) of a round based on all players' moves.
-     * Draw if everyone threw the same move or all 3 options are present.
-     * @param playerMoves array of moves made by each player
-     * @return array of winner indexes (1-indexed), or {0} for a draw
+     * Determines the winner of a round between two players.
+     * @param humanMove the human player's move
+     * @param computerMove the computer player's move
+     * @return 0 for draw, 1 if human wins, 2 if computer wins
      */
-    public Integer[] determineWinner(Move[] playerMoves) {
-        // Check if there are exactly 2 distinct moves
-        Set<Move> distinctMoves = new HashSet<>();
-        for (Move move : playerMoves)
-            distinctMoves.add(move);
+    public int determineWinner(Move humanMove, Move computerMove) {
+        if (humanMove == computerMove)
+            return 0;
+        // A series of if statements to determine if the human wins. 
+        boolean humanWins = (humanMove == Move.ROCK && computerMove == Move.SCISSORS) 
+                            || (humanMove == Move.PAPER && computerMove == Move.ROCK)
+                            || (humanMove == Move.SCISSORS && computerMove == Move.PAPER);
 
-        if (distinctMoves.size() != 2)
-            return new Integer[]{0};
-
-        Move winningMove = getWinningMove(distinctMoves);
-
-        ArrayList<Integer> winners = new ArrayList<>();
-        for (int i = 0; i < playerMoves.length; i++)
-            if (playerMoves[i] == winningMove)
-                winners.add(i + 1); // +1 because the first index is the draw score
-
-        return winners.toArray(new Integer[winners.size()]);
-    }
-
-    /**
-     * Given exactly two distinct moves, returns the one that beats the other.
-     */
-    private Move getWinningMove(Set<Move> moves) {
-        if (moves.contains(Move.ROCK) && moves.contains(Move.SCISSORS))
-            return Move.ROCK;
-        else if (moves.contains(Move.PAPER) && moves.contains(Move.ROCK))
-            return Move.PAPER;
-        else
-            return Move.SCISSORS;
+        return humanWins ? 1 : 2;
     }
 }
