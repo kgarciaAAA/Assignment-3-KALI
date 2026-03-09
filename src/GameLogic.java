@@ -1,49 +1,43 @@
+import java.util.HashSet;
+import java.util.Set;
 import java.util.ArrayList;
-import java.util.List;
+
 public class GameLogic {
-    // Use to determine the winner(s) for a RPS (Rock_Paper_Scissors) round
 
-    public Integer[] determineWinner(Move[] moves) {
-        boolean hasRock = false;
-        boolean hasPaper = false;
-        boolean hasScissors = false;
+    /**
+     * Determines the winner(s) of a round based on all players' moves.
+     * Draw if everyone threw the same move or all 3 options are present.
+     * @param playerMoves array of moves made by each player
+     * @return array of winner indexes (1-indexed), or {0} for a draw
+     */
+    public Integer[] determineWinner(Move[] playerMoves) {
+        // Check if there are exactly 2 distinct moves
+        Set<Move> distinctMoves = new HashSet<>();
+        for (Move move : playerMoves)
+            distinctMoves.add(move);
 
-        for (Move m: moves) {
-            if (m == Move.ROCK) hasRock = true;
-            else if (m == Move.PAPER) hasPaper = true;
-            else if (m == Move.SCISSORS) hasScissors = true;
-        }
-
-        int distinct = (hasRock ? 1 : 0) + (hasPaper ? 1 : 0) + (hasScissors ? 1 : 0);
-
-        // Draw if everyone chose the same move, or if all three moves appear
-        if (distinct <= 1 || distinct == 3) {
-            return new Integer[] {0};
-        }
-
-        // Exactly two moves are present to determine which move wins
-        Move winningMove;
-        if (hasRock && hasScissors) {
-            winningMove = Move.ROCK;        // Rock beats Scissors
-        } else if (hasScissors && hasPaper) {
-            winningMove = Move.SCISSORS;    // Scissors beats Paper
-        } else {
-            winningMove = Move.PAPER;       // Paper beats Rock
-        }
-
-        // Collect all players (1-indexed) who played the winning move
-        List<Integer> winners = new ArrayList<>();
-        for (int i = 0; i < moves.length; i++) {
-            if (moves[i] == winningMove) {
-                winners.add(i + 1); // convert 0-indexed moves[] to 1-indexed player id
-            }
-        }
-
-        // Safety fallback (shouldn't happen)
-        if (winners.isEmpty()) {
+        if (distinctMoves.size() != 2)
             return new Integer[]{0};
-        }
 
-        return winners.toArray(new Integer[0]);
+        Move winningMove = getWinningMove(distinctMoves);
+
+        ArrayList<Integer> winners = new ArrayList<>();
+        for (int i = 0; i < playerMoves.length; i++)
+            if (playerMoves[i] == winningMove)
+                winners.add(i + 1); // +1 because the first index is the draw score
+
+        return winners.toArray(new Integer[winners.size()]);
+    }
+
+    /**
+     * Given exactly two distinct moves, returns the one that beats the other.
+     */
+    private Move getWinningMove(Set<Move> moves) {
+        if (moves.contains(Move.ROCK) && moves.contains(Move.SCISSORS))
+            return Move.ROCK;
+        else if (moves.contains(Move.PAPER) && moves.contains(Move.ROCK))
+            return Move.PAPER;
+        else
+            return Move.SCISSORS;
     }
 }
