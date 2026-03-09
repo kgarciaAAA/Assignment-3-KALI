@@ -6,7 +6,7 @@ public class GameLogic {
      * @param computerMove the computer player's move
      * @return 0 for draw, 1 if human wins, 2 if computer wins
      */
-    public int determineWinner(Move humanMove, Move computerMove) {
+    public int roundWinner(Move humanMove, Move computerMove) {
         if (humanMove == computerMove)
             return 0;
         // A series of if statements to determine if the human wins. 
@@ -16,4 +16,6 @@ public class GameLogic {
 
         return humanWins ? 1 : 2;
     }
+
+    
 }

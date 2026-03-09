@@ -17,18 +17,24 @@ public class Game {
         this.numberOfRounds = numberOfRounds;
     }
 
+
+    /**
+     * Begins and manages the entire game session
+     */
     public void startGame() {
         for (int round = 1; round <= numberOfRounds; round++) {
             System.out.print("Round " + round + " - ");
             Move humanMove = humanPlayer.getPlayerMove();
             Move computerMove = computerPlayer.getPlayerMove();
 
-            int result = gameLogic.determineWinner(humanMove, computerMove);
+            int result = gameLogic.roundWinner(humanMove, computerMove);
             printRoundResult(humanMove, computerMove, result);
             scoreboard.recordResult(result);
             scoreboard.displayScore();
 
         }
+        int gameResult = scoreboard.getGameWinner();
+        printGameResult(gameResult);
     }
 
     /**
@@ -48,8 +54,24 @@ public class Game {
             case 2:
                 System.out.println("Computer Wins!");
                 break;
-            default:
-                throw new IllegalArgumentException("Invalid result: " + result);
+        }
+    }
+
+    /**
+     * Prints the overall winner of the game.
+     * @param gameResult 0 = draw, 1 = human wins, 2 = computer wins
+     */
+    private void printGameResult(int gameResult) {
+        switch(gameResult) {
+            case 0: 
+                System.out.println("**** Draw. Nobody wins. ****");
+                break;
+            case 1:
+                System.out.println("**** Human Wins the Game ****");
+                break;
+            case 2:
+                System.out.println("**** Computer Wins the Game ****");
+                break;
         }
     }
 }

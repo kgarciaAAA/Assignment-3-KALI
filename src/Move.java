@@ -1,7 +1,10 @@
 public enum Move {
     ROCK, PAPER, SCISSORS;
 
-    public void printMove() {
-        System.out.print(name().charAt(0) + name().substring(1).toLowerCase());
+    /**
+     * Displays the enum values
+     */
+    @Override public String toString() {
+        return name().charAt(0) + name().substring(1).toLowerCase();
     }
 }

@@ -18,12 +18,27 @@ public class ScoreBoard {
             case 2:
                 computerScore++;
                 break;
-            default:
-                throw new IllegalArgumentException("Invalid result: " + result);
         }
     }
 
+    /**
+     * Displays the current score for human wins, computer wins, and draws.
+     */
     public void displayScore() {
-        System.out.printf("Score: Human: %s. Computer: %s. Draws: %s. \n", humanScore, computerScore, draws);
+        System.out.printf("Score: Human: %s. Computer: %s. Draws: %s. \n\n", humanScore, computerScore, draws);
+    }
+
+    /**
+     * Determines the winner of the game based comparisons between scores.
+     * @return 0 = draw, 1 = human wins, 2 = computer wins
+     */
+    public int getGameWinner() {
+        if (humanScore > computerScore) {
+            return 1;
+        } else if (humanScore < computerScore) {
+            return 2;
+        } else {
+            return 0;
+        }
     }
 }
