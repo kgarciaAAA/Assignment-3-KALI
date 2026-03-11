@@ -5,6 +5,7 @@ public class Game {
     private final ComputerPlayer computerPlayer;
     private final ScoreBoard scoreboard;
     private final GameLogic gameLogic;
+    private final GameResultView gameResultView;
     private final int numberOfRounds;
 
     /**
@@ -15,6 +16,7 @@ public class Game {
         this.humanPlayer = new HumanPlayer();
         this.computerPlayer = new ComputerPlayer();
         this.scoreboard = new ScoreBoard();
+        this.gameResultView = new GameResultView();
         this.gameLogic = new GameLogic();
         this.numberOfRounds = numberOfRounds;
     }
@@ -30,48 +32,13 @@ public class Game {
             Move computerMove = computerPlayer.getPlayerMove();
 
             int result = gameLogic.roundWinner(humanMove, computerMove);
-            printRoundResult(humanMove, computerMove, result);
+            gameResultView.printRoundResult(humanMove, computerMove, result);
             scoreboard.recordResult(result);
             scoreboard.displayScore();
 
         }
         int gameResult = scoreboard.getGameWinner();
-        printGameResult(gameResult);
+        gameResultView.printGameResult(gameResult);
     }
 
-    /**
-     * Prints what each player chose and the round outcome.
-     * @param result 0 = draw, 1 = human wins, 2 = computer wins
-     */
-    private void printRoundResult(Move humanMove, Move computerMove, int result) {
-        System.out.println("You chose " + humanMove + ":");
-        System.out.println(humanMove.getArt());
-
-        System.out.println("Computer chose " + computerMove + ":");
-        System.out.println(computerMove.getArt());
-
-        switch (result) {
-            case 0 -> System.out.println("Draw!");
-            case 1 -> System.out.println("You Win!");
-            case 2 -> System.out.println("Computer Wins!");
-        }
-    }
-
-    /**
-     * Prints the overall winner of the game.
-     * @param gameResult 0 = draw, 1 = human wins, 2 = computer wins
-     */
-    private void printGameResult(int gameResult) {
-        switch(gameResult) {
-            case 0: 
-                System.out.println("**** Draw. Nobody wins. ****");
-                break;
-            case 1:
-                System.out.println("**** Human Wins the Game ****");
-                break;
-            case 2:
-                System.out.println("**** Computer Wins the Game ****");
-                break;
-        }
-    }
 }
