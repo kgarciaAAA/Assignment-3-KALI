@@ -1,8 +1,8 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import main.ScoreBoard;
+import main.Result;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class ScoreBoardTest {
@@ -11,33 +11,34 @@ public class ScoreBoardTest {
     void testRecordResultCountsCorrectly() {
         ScoreBoard sb = new ScoreBoard();
 
-        sb.recordResult(1); // human win
-        sb.recordResult(2); // computer win
-        sb.recordResult(0); // draw
-        sb.recordResult(1); // human win
+        sb.recordResult(Result.HUMAN_WIN); // human win
+        sb.recordResult(Result.COMPUTER_WIN); // computer win
+        sb.recordResult(Result.DRAW); // draw
+        sb.recordResult(Result.HUMAN_WIN); // human win
 
         // Winner should be human (2 vs 1)
-        assertEquals(1, sb.getGameWinner());
+        Assertions.assertEquals(Result.HUMAN_WIN, sb.getGameWinner());
     }
 
     @Test
     void testGameWinnerDraw() {
         ScoreBoard sb = new ScoreBoard();
 
-        sb.recordResult(1);
-        sb.recordResult(2);
+        sb.recordResult(Result.HUMAN_WIN); // human win
+        sb.recordResult(Result.COMPUTER_WIN); // computer win
 
-        assertEquals(0, sb.getGameWinner());
+        Assertions.assertEquals(Result.DRAW, sb.getGameWinner());
     }
 
+    
     @Test
     void testGameWinnerComputerWins() {
         ScoreBoard sb = new ScoreBoard();
 
-        sb.recordResult(2);
-        sb.recordResult(2);
-        sb.recordResult(0);
+        sb.recordResult(Result.COMPUTER_WIN); // computer win
+        sb.recordResult(Result.COMPUTER_WIN); // computer win
+        sb.recordResult(Result.DRAW); // draw
 
-        assertEquals(2, sb.getGameWinner());
+        Assertions.assertEquals(Result.COMPUTER_WIN, sb.getGameWinner());
     }
 }
