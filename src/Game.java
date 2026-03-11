@@ -42,18 +42,16 @@ public class Game {
      * @param result 0 = draw, 1 = human wins, 2 = computer wins
      */
     private void printRoundResult(Move humanMove, Move computerMove, int result) {
-        System.out.printf("You chose %s. The computer chose %s. ", humanMove, computerMove);
+        System.out.println("You chose " + humanMove + ":");
+        System.out.println(humanMove.getArt());
+
+        System.out.println("Computer chose " + computerMove + ":");
+        System.out.println(computerMove.getArt());
 
         switch (result) {
-            case 0:
-                System.out.println("Draw!");
-                break;
-            case 1:
-                System.out.println("You Win!");
-                break;
-            case 2:
-                System.out.println("Computer Wins!");
-                break;
+            case 0 -> System.out.println("Draw!");
+            case 1 -> System.out.println("You Win!");
+            case 2 -> System.out.println("Computer Wins!");
         }
     }
 

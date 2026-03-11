@@ -1,10 +1,44 @@
 public enum Move {
-    ROCK, PAPER, SCISSORS;
+    ROCK("""
+        _______
+    ---'   ____)
+          (_____)
+          (_____)
+          (____)
+    ---.__(___)
+    """),
 
-    /**
-     * Displays the enum values
-     */
-    @Override public String toString() {
-        return name().charAt(0) + name().substring(1).toLowerCase();
+    PAPER("""
+        _______
+    ---'   ____)____
+              ______)
+              _______)
+             _______)
+    ---.__________)
+    """),
+
+    SCISSORS("""
+        _______
+    ---'   ____)____
+              ______)
+           __________)
+          (____)
+    ---.__(___)
+    """);
+
+    private final String art;
+
+    Move(String art) {
+        this.art = art;
+    }
+
+    public String getArt() {
+        return art;
+    }
+
+    @Override
+    public String toString() {
+        String n = name();
+        return n.charAt(0) + n.substring(1).toLowerCase();
     }
 }
