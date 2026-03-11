@@ -67,10 +67,10 @@ public class Game {
                 System.out.println("**** Draw. Nobody wins. ****");
                 break;
             case 1:
-                System.out.println("**** Human Wins the main.Game ****");
+                System.out.println("**** Human Wins the Game ****");
                 break;
             case 2:
-                System.out.println("**** Computer Wins the main.Game ****");
+                System.out.println("**** Computer Wins the Game ****");
                 break;
         }
     }
