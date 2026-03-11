@@ -1,3 +1,5 @@
+package main;
+
 public class Game {
     private final HumanPlayer humanPlayer;
     private final ComputerPlayer computerPlayer;
@@ -65,10 +67,10 @@ public class Game {
                 System.out.println("**** Draw. Nobody wins. ****");
                 break;
             case 1:
-                System.out.println("**** Human Wins the Game ****");
+                System.out.println("**** Human Wins the main.Game ****");
                 break;
             case 2:
-                System.out.println("**** Computer Wins the Game ****");
+                System.out.println("**** Computer Wins the main.Game ****");
                 break;
         }
     }

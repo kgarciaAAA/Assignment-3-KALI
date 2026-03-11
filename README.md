@@ -1,1 +1,1 @@
-Command-Line Rock-Paper-Scissors (RPS) Game for CS-151.
+Command-Line Rock-Paper-Scissors (RPS) main.Game for CS-151.

@@ -1,13 +1,15 @@
+package main;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class HumanPlayer extends Player{
+public class HumanPlayer extends Player {
     private final Scanner scanner = new Scanner(System.in);
 
     /**
      * Asks user choice their next move as an int. The method validates the user input,
      * and if validated, returns their next move.
-     * @return the human player's selected move as a Move enum value
+     * @return the human player's selected move as a main.Move enum value
      */
     @Override
     public Move getPlayerMove() {

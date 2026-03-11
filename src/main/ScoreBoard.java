@@ -1,3 +1,5 @@
+package main;
+
 public class ScoreBoard {
     private int humanScore;
     private int computerScore;
