@@ -1,13 +1,14 @@
 package test;
+
 import main.ComputerPlayer;
 import main.Move;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 import java.util.HashSet;
 import java.util.Set;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ComputerPlayerTest {
+    
     @Test
     public void testRandomness(){
         ComputerPlayer computer = new ComputerPlayer();

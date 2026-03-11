@@ -3,8 +3,8 @@ package test;
 import main.GameLogic;
 import main.Move;
 import main.Result;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GameLogicTest {
 
@@ -12,22 +12,22 @@ public class GameLogicTest {
 
     @Test
     void testDraws() {
-        Assertions.assertEquals(Result.DRAW, logic.roundWinner(Move.ROCK, Move.ROCK));
-        Assertions.assertEquals(Result.DRAW, logic.roundWinner(Move.PAPER, Move.PAPER));
-        Assertions.assertEquals(Result.DRAW, logic.roundWinner(Move.SCISSORS, Move.SCISSORS));
+        assertEquals(Result.DRAW, logic.roundWinner(Move.ROCK, Move.ROCK)); // Both Throw Rock
+        assertEquals(Result.DRAW, logic.roundWinner(Move.PAPER, Move.PAPER)); // Both Throw Paper
+        assertEquals(Result.DRAW, logic.roundWinner(Move.SCISSORS, Move.SCISSORS)); // Both Throw Scissors
     }
 
     @Test
     void testHumanWinsCases() {
-        Assertions.assertEquals(Result.HUMAN_WIN, logic.roundWinner(Move.ROCK, Move.SCISSORS));
-        Assertions.assertEquals(Result.HUMAN_WIN, logic.roundWinner(Move.PAPER, Move.ROCK));
-        Assertions.assertEquals(Result.HUMAN_WIN, logic.roundWinner(Move.SCISSORS, Move.PAPER));
+        assertEquals(Result.HUMAN_WIN, logic.roundWinner(Move.ROCK, Move.SCISSORS)); // Human = Rock, Computer = Scissors, expect Human Win
+        assertEquals(Result.HUMAN_WIN, logic.roundWinner(Move.PAPER, Move.ROCK)); // Human = Paper, Computer = Rock, expect Human Win
+        assertEquals(Result.HUMAN_WIN, logic.roundWinner(Move.SCISSORS, Move.PAPER)); // Human = Scissors, Computer = Paper, expect Human Win
     }
 
     @Test
     void testComputerWinsCases() {
-        Assertions.assertEquals(Result.COMPUTER_WIN, logic.roundWinner(Move.ROCK, Move.PAPER));
-        Assertions.assertEquals(Result.COMPUTER_WIN, logic.roundWinner(Move.PAPER, Move.SCISSORS));
-        Assertions.assertEquals(Result.COMPUTER_WIN, logic.roundWinner(Move.SCISSORS, Move.ROCK));
+        assertEquals(Result.COMPUTER_WIN, logic.roundWinner(Move.ROCK, Move.PAPER));  // Human = Rock, Computer = Paper, expect Computer Win
+        assertEquals(Result.COMPUTER_WIN, logic.roundWinner(Move.PAPER, Move.SCISSORS)); // Human = Paper, Computer = Scissors, expect Computer Win
+        assertEquals(Result.COMPUTER_WIN, logic.roundWinner(Move.SCISSORS, Move.ROCK)); // Human = Scissors, Computer = Rock, expect Computer Win
     }
 }
