@@ -1,24 +1,21 @@
 package main;
 
 public class Game {
-    private final HumanPlayer humanPlayer;
-    private final ComputerPlayer computerPlayer;
-    private final ScoreBoard scoreboard;
+    private final int numberOfRounds;
+    private final Player humanPlayer;
+    private final Player computerPlayer;
+    private final ScoreBoard scoreBoard;
     private final GameLogic gameLogic;
     private final DisplayResult displayResult;
-    private final int numberOfRounds;
 
-    /**
-     * Initializes a 1v1 game between a human player and a computer player.
-     * @param numberOfRounds number of rounds to play
-     */
-    public Game(int numberOfRounds) {
-        this.humanPlayer = new HumanPlayer();
-        this.computerPlayer = new ComputerPlayer();
-        this.scoreboard = new ScoreBoard();
-        this.displayResult = new DisplayResult();
-        this.gameLogic = new GameLogic();
+    //Default Constructor
+    public Game(int numberOfRounds, Player humanPlayer, Player computerPlayer, ScoreBoard scoreBoard, GameLogic gameLogic, DisplayResult displayResult) {
         this.numberOfRounds = numberOfRounds;
+        this.humanPlayer = humanPlayer;
+        this.computerPlayer = computerPlayer;
+        this.scoreBoard = scoreBoard;
+        this.gameLogic = gameLogic;
+        this.displayResult = displayResult;
     }
 
 
@@ -28,16 +25,16 @@ public class Game {
     public void startGame() {
         for (int round = 1; round <= numberOfRounds; round++) {
             System.out.print("Round " + round + " - ");
-            Move humanMove = humanPlayer.getPlayerMove();
-            Move computerMove = computerPlayer.getPlayerMove();
 
-            int result = gameLogic.roundWinner(humanMove, computerMove);
-            displayResult.printRoundResult(humanMove, computerMove, result);
-            scoreboard.recordResult(result);
-            scoreboard.displayScore();
+            GameRound gameRound = new GameRound(humanPlayer, computerPlayer, gameLogic);
+
+            Result roundResult = gameRound.getRoundResult();
+            displayResult.printRoundResult(gameRound.getHumanMove(), gameRound.getComputerMove(), roundResult);
+            scoreBoard.recordResult(roundResult);
+            scoreBoard.displayScore();
 
         }
-        int gameResult = scoreboard.getGameWinner();
+        Result gameResult = scoreBoard.getGameWinner();
         displayResult.printGameResult(gameResult);
     }
 

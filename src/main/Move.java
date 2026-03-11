@@ -38,6 +38,15 @@ public enum Move {
         return art;
     }
 
+    public static Move convertToMove(int choice) {
+        return switch (choice) {
+            case 0 -> Move.ROCK;
+            case 1 -> Move.PAPER;
+            case 2 -> Move.SCISSORS;
+            default -> throw new IllegalArgumentException("Invalid move");
+        };
+    }
+
     @Override
     public String toString() {
         String n = name();

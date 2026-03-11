@@ -7,13 +7,13 @@ public class ScoreBoard {
 
     /**
      * Records the result of a round.
-     * @param result 0 = draw, 1 = human wins, 2 = computer wins
+     * @param result DRAW = draw, HUMAN_WIN = human wins, COMPUTER_WIN = computer wins
      */
-    public void recordResult(int result) {
-        switch (result) {
-            case 0 -> draws++;
-            case 1 -> humanScore++;
-            case 2 -> computerScore++;
+    public void recordResult(Result roundResult) {
+        switch (roundResult) {
+            case Result.DRAW -> draws++;
+            case Result.HUMAN_WIN -> humanScore++;
+            case Result.COMPUTER_WIN -> computerScore++;
         }
     }
 
@@ -26,15 +26,15 @@ public class ScoreBoard {
 
     /**
      * Determines the winner of the game based comparisons between scores.
-     * @return 0 = draw, 1 = human wins, 2 = computer wins
+     * @return DRAW = draw, HUMAN_WIN = human won, COMPUTER_WIN = computer won
      */
-    public int getGameWinner() {
+    public Result getGameWinner() {
         if (humanScore > computerScore) {
-            return 1;
+            return Result.HUMAN_WIN;
         } else if (humanScore < computerScore) {
-            return 2;
+            return Result.COMPUTER_WIN;
         } else {
-            return 0;
+            return Result.DRAW;
         }
     }
 }
