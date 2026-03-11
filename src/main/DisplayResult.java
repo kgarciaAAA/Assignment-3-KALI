@@ -13,9 +13,9 @@ public class DisplayResult {
         System.out.println(computerMove.getArt());
 
         switch (roundResult) {
-            case Result.DRAW -> System.out.println("Draw!");
-            case Result.HUMAN_WIN -> System.out.println("You Win!");
-            case Result.COMPUTER_WIN -> System.out.println("Computer Wins!");
+            case DRAW -> System.out.println("Draw!");
+            case HUMAN_WIN -> System.out.println("You Win!");
+            case COMPUTER_WIN -> System.out.println("Computer Wins!");
         }
     }
 
@@ -25,9 +25,9 @@ public class DisplayResult {
      */
     public void printGameResult(Result gameResult) {
         switch(gameResult) {
-            case Result.DRAW -> System.out.println("****** Draw. Nobody wins. ******");
-            case Result.HUMAN_WIN -> System.out.println("****** Human Wins the Game ******");
-            case Result.COMPUTER_WIN -> System.out.println("****** Computer Wins the Game ******");
+            case DRAW -> System.out.println("****** Draw. Nobody wins. ******");
+            case HUMAN_WIN -> System.out.println("****** Human Wins the Game ******");
+            case COMPUTER_WIN -> System.out.println("****** Computer Wins the Game ******");
         }
     }
 }

@@ -11,9 +11,9 @@ public class ScoreBoard {
      */
     public void recordResult(Result roundResult) {
         switch (roundResult) {
-            case Result.DRAW -> draws++;
-            case Result.HUMAN_WIN -> humanScore++;
-            case Result.COMPUTER_WIN -> computerScore++;
+            case DRAW -> draws++;
+            case HUMAN_WIN -> humanScore++;
+            case COMPUTER_WIN -> computerScore++;
         }
     }
 
