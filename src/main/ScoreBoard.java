@@ -11,15 +11,9 @@ public class ScoreBoard {
      */
     public void recordResult(int result) {
         switch (result) {
-            case 0:
-                draws++;
-                break;
-            case 1:
-                humanScore++;
-                break;
-            case 2:
-                computerScore++;
-                break;
+            case 0 -> draws++;
+            case 1 -> humanScore++;
+            case 2 -> computerScore++;
         }
     }
 

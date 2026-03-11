@@ -5,7 +5,7 @@ public class Game {
     private final ComputerPlayer computerPlayer;
     private final ScoreBoard scoreboard;
     private final GameLogic gameLogic;
-    private final GameResultView gameResultView;
+    private final DisplayResult displayResult;
     private final int numberOfRounds;
 
     /**
@@ -16,7 +16,7 @@ public class Game {
         this.humanPlayer = new HumanPlayer();
         this.computerPlayer = new ComputerPlayer();
         this.scoreboard = new ScoreBoard();
-        this.gameResultView = new GameResultView();
+        this.displayResult = new DisplayResult();
         this.gameLogic = new GameLogic();
         this.numberOfRounds = numberOfRounds;
     }
@@ -32,13 +32,13 @@ public class Game {
             Move computerMove = computerPlayer.getPlayerMove();
 
             int result = gameLogic.roundWinner(humanMove, computerMove);
-            gameResultView.printRoundResult(humanMove, computerMove, result);
+            displayResult.printRoundResult(humanMove, computerMove, result);
             scoreboard.recordResult(result);
             scoreboard.displayScore();
 
         }
         int gameResult = scoreboard.getGameWinner();
-        gameResultView.printGameResult(gameResult);
+        displayResult.printGameResult(gameResult);
     }
 
 }

@@ -1,6 +1,6 @@
 package main;
 
-public class GameResultView {
+public class DisplayResult {
     /**
      * Prints what each player chose and the round outcome.
      * @param result 0 = draw, 1 = human wins, 2 = computer wins
@@ -25,15 +25,9 @@ public class GameResultView {
      */
     public void printGameResult(int gameResult) {
         switch(gameResult) {
-            case 0: 
-                System.out.println("**** Draw. Nobody wins. ****");
-                break;
-            case 1:
-                System.out.println("**** Human Wins the Game ****");
-                break;
-            case 2:
-                System.out.println("**** Computer Wins the Game ****");
-                break;
+            case 0 -> System.out.println("**** Draw. Nobody wins. ****");
+            case 1 -> System.out.println("**** Human Wins the Game ****");
+            case 2 -> System.out.println("**** Computer Wins the Game ****");
         }
     }
 }

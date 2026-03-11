@@ -18,15 +18,19 @@ public class HumanPlayer extends Player {
             System.out.print("Choose (1=rock, 2=paper, 3=scissors): ");
             int choice = scanner.nextInt();
                 switch (choice) {
-                    case 1:
+                    case 1 -> {
                         return Move.ROCK;
-                    case 2:
+                    }
+                    case 2 -> {
                         return Move.PAPER;
-                    case 3:
+                    }
+                    case 3 -> {
                         return Move.SCISSORS;
-                    default:
+                    }
+                    default -> {
                         scanner.nextLine();
                         System.out.println("Invalid Choice. Try Again...");
+                    }
                 }
             } catch (InputMismatchException e) {
                 scanner.nextLine();
